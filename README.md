@@ -1,14 +1,12 @@
 # Reclassification and Weighting of Multiple Causes of Death (US 2003–2023)
 
-> Data availability note: The full data package and large binary artifacts are intentionally excluded from this GitHub repository due to transfer size limits and will be shared peer-to-peer upon request.
-
-This is a code-and-documentation package for the paper (without the large data payload).
+This is the clean, upload-ready GitHub package for the paper.
 
 ## Structure
 
 - `paper/` — manuscript PDF
 - `data/reference/` — lookup tables and population file
-- `data/mcd/` — yearly compressed source mortality files (2003–2023)
+- `data/mcd/` — excluded from this GitHub package (provided separately peer-to-peer due size/licensing constraints)
 - `data/output_agg/` — precomputed aggregate CSVs
 - `data/processed_snapshot/` — precomputed processed tables used by the main reproducibility scripts
 - `data/processed_snapshot/all_I_parts/` — split gzip chunks (<25 MiB each) for rebuilding `all_I=converted_with_original.csv`
@@ -62,8 +60,9 @@ GitHub file-size limits used for this packaging:
 - Git push hard limit: `100 MiB` per file
 - This package includes some files in the `25–100 MiB` range, so publish it via `git push` (not browser drag-and-drop upload).
 
-Oversized source artifacts are excluded, while the largest required CSV is included as split `<25 MiB` chunks for local reconstruction.
+Oversized source input artifacts (`data/mcd/*.csv.xz`) are excluded from this GitHub package and shared separately peer-to-peer by the authors. The largest required CSV is included as split `<25 MiB` chunks for local reconstruction.
 
 See:
 - `manifests/excluded_large_files.csv`
 - `manifests/all_I_parts_manifest.csv`
+- `manifests/excluded_input_large_files.csv`

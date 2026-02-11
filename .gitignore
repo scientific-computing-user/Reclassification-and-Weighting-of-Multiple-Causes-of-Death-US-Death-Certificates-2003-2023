@@ -8,6 +8,7 @@ __pycache__/
 # Generated local reruns
 data/processed_snapshot/all_I=converted_with_original.csv
 data/processed_snapshot/all_I=converted_with_original.csv.tmp
+data/mcd/
 results/reproduced/logs/
 results/reproduced/figures/*.xlsx
 results/reproduced/figures/*.png
