@@ -1,0 +1,340 @@
+icd10,First_letter,cause,icd_10_Name
+I169,I,Circulatory,"I16.9 (Hypertensive crisis, unspecified)"
+K85,K,Digestive,K85 (Acute pancreatitis)
+U099,U,COVID-19,U09.9 (Post COVID-19 condition)
+E244,A,Alcohol-related,E24.4 (Alcohol-induced pseudo-Cushing syndrome)
+F10,A,Alcohol-related,F10 (Mental and behavioural disorders due to use of alcohol)
+G312,A,Alcohol-related,G31.2 (Degeneration of nervous system due to alcohol)
+G621,A,Alcohol-related,G62.1 (Alcoholic polyneuropathy)
+G721,A,Alcohol-related,G72.1 (Alcoholic myopathy)
+I426,A,Alcohol-related,I42.6 (Alcoholic cardiomyopathy)
+K292,A,Alcohol-related,K29.2 (Alcoholic gastritis)
+K70,A,Alcohol-related,K70 (Alcoholic liver disease)
+K852,A,Alcohol-related,K85.2 (Alcohol-induced acute pancreatitis)
+K860,A,Alcohol-related,K86.0 (Alcohol-induced chronic pancreatitis)
+R780,A,Alcohol-related,R78.0 (Finding of alcohol in blood)
+X45,A,Alcohol-related,X45 (Accidental poisoning by and exposure to alcohol)
+X65,A,Alcohol-related,X65 (Intentional self-poisoning by and exposure to alcohol)
+Y15,A,Alcohol-related,"Y15 (Poisoning by and exposure to alcohol, undetermined intent)"
+C00-D48,C,Cancer,C00-D48 (Neoplasms)
+U071,C,COVID-19,U07.1 (COVID-19)
+K00-K14,D,Digestive,"K00-K14 (Diseases of oral cavity, salivary glands and jaws)"
+K20,D,Digestive,K20 (Oesophagitis)
+K21,D,Digestive,K21 (Gastro-oesophageal reflux disease)
+K22,D,Digestive,K22 (Other diseases of oesophagus)
+K25,D,Digestive,K25 (Gastric ulcer)
+K26,D,Digestive,K26 (Duodenal ulcer)
+K27,D,Digestive,"K27 (Peptic ulcer, site unspecified)"
+K28,D,Digestive,K28 (Gastrojejunal ulcer)
+K290,D,Digestive,K29.0 (Acute haemorrhagic gastritis)
+K291,D,Digestive,K29.1 (Other acute gastritis)
+K293,D,Digestive,K29.3 (Chronic superficial gastritis)
+K294,D,Digestive,K29.4 (Chronic atrophic gastritis)
+K295,D,Digestive,"K29.5 (Chronic gastritis, unspecified)"
+K296,D,Digestive,K29.6 (Other gastritis)
+K297,D,Digestive,"K29.7 (Gastritis, unspecified)"
+K298,D,Digestive,K29.8 (Duodenitis)
+K299,D,Digestive,"K29.9 (Gastroduodenitis, unspecified)"
+K30,D,Digestive,K30 (Dyspepsia)
+K31,D,Digestive,K31 (Other diseases of stomach and duodenum)
+K35-K38,D,Digestive,K35-K38 (Diseases of appendix)
+K40-K46,D,Digestive,K40-K46 (Hernia)
+K50-K52,D,Digestive,K50-K52 (Noninfective enteritis and colitis)
+K55-K63,D,Digestive,K55-K63 (Other diseases of intestines)
+K65-K66,D,Digestive,K65-K66 (Diseases of peritoneum)
+K71,D,Digestive,K71 (Toxic liver disease)
+K72,D,Digestive,"K72 (Hepatic failure, not elsewhere classified)"
+K73,D,Digestive,"K73 (Chronic hepatitis, not elsewhere classified)"
+K74,D,Digestive,K74 (Fibrosis and cirrhosis of liver)
+K75,D,Digestive,K75 (Other inflammatory liver diseases)
+K76,D,Digestive,K76 (Other diseases of liver)
+K80,D,Digestive,K80 (Cholelithiasis)
+K81,D,Digestive,K81 (Cholecystitis)
+K82,D,Digestive,K82 (Other diseases of gallbladder)
+K83,D,Digestive,K83 (Other diseases of biliary tract)
+K850,D,Digestive,K85.0 (Idiopathic acute pancreatitis)
+K851,D,Digestive,K85.1 (Biliary acute pancreatitis)
+K853,D,Digestive,K85.3 (Drug-induced acute pancreatitis)
+K858,D,Digestive,K85.8 (Other acute pancreatitis)
+K859,D,Digestive,"K85.9 (Acute pancreatitis, unspecified)"
+K861,D,Digestive,K86.1 (Other chronic pancreatitis)
+K862,D,Digestive,K86.2 (Cyst of pancreas)
+K863,D,Digestive,K86.3 (Pseudocyst of pancreas)
+K868,D,Digestive,K86.8 (Other specified diseases of pancreas)
+K869,D,Digestive,"K86.9 (Disease of pancreas, unspecified)"
+K90-K92,D,Digestive,K90-K92 (Other diseases of the digestive system)
+F11,D,Drug poisoning,F11 (Mental and behavioural disorders due to use of opioids)
+F12,D,Drug poisoning,F12 (Mental and behavioural disorders due to use of cannabinoids)
+F13,D,Drug poisoning,F13 (Mental and behavioural disorders due to use of sedatives or hypnotics)
+F14,D,Drug poisoning,F14 (Mental and behavioural disorders due to use of cocaine)
+F15,D,Drug poisoning,"F15 (Mental and behavioural disorders due to use of other stimulants, including caffeine)"
+F16,D,Drug poisoning,F16 (Mental and behavioural disorders due to use of hallucinogens)
+F19,D,Drug poisoning,F19 (Mental and behavioural disorders due to multiple drug use and use of other psychoactive substances)
+X60,D,Drug poisoning,"X60 (Intentional self-poisoning by and exposure to nonopioid analgesics, antipyretics and antirheumatics)"
+X61,D,Drug poisoning,"X61 (Intentional self-poisoning by and exposure to antiepileptic, sedative-hypnotic, antiparkinsonism and psychotropic drugs, not elsewhere classified)"
+X62,D,Drug poisoning,"X62 (Intentional self-poisoning by and exposure to narcotics and psychodysleptics [hallucinogens], not elsewhere classified)"
+X63,D,Drug poisoning,X63 (Intentional self-poisoning by and exposure to other drugs acting on the autonomic nervous system)
+X64,D,Drug poisoning,"X64 (Intentional self-poisoning by and exposure to other and unspecified drugs, medicaments and biological substances)"
+X85,D,Drug poisoning,"X85 (Assault by drugs, medicaments and biological substances)"
+Y10,D,Drug poisoning,"Y10 (Poisoning by and exposure to nonopioid analgesics, antipyretics and antirheumatics, undetermined intent)"
+Y11,D,Drug poisoning,"Y11 (Poisoning by and exposure to antiepileptic, sedative-hypnotic, antiparkinsonism and psychotropic drugs, not elsewhere classified, undetermined intent)"
+Y12,D,Drug poisoning,"Y12 (Poisoning by and exposure to narcotics and psychodysleptics [hallucinogens], not elsewhere classified, undetermined intent)"
+Y13,D,Drug poisoning,"Y13 (Poisoning by and exposure to other drugs acting on the autonomic nervous system, undetermined intent)"
+Y14,D,Drug poisoning,"Y14 (Poisoning by and exposure to other and unspecified drugs, medicaments and biological substances, undetermined intent)"
+X40,D,Drug poisoning,"X40 (Accidental poisoning by and exposure to nonopioid analgesics, antipyretics and antirheumatics)"
+X41,D,Drug poisoning,"X41 (Accidental poisoning by and exposure to antiepileptic, sedative-hypnotic, antiparkinsonism and psychotropic drugs, not elsewhere classified)"
+X42,D,Drug poisoning,"X42 (Accidental poisoning by and exposure to narcotics and psychodysleptics [hallucinogens], not elsewhere classified)"
+X43,D,Drug poisoning,X43 (Accidental poisoning by and exposure to other drugs acting on the autonomic nervous system)
+X44,D,Drug poisoning,"X44 (Accidental poisoning by and exposure to other and unspecified drugs, medicaments and biological substances)"
+E00-E07,E,Endocrine,E00-E07 (Disorders of thyroid gland)
+E10-E14,E,Endocrine,E10-E14 (Diabetes mellitus)
+E15-E16,E,Endocrine,E15-E16 (Other disorders of glucose regulation and pancreatic internal secretion)
+E20,E,Endocrine,E20 (Hypoparathyroidism)
+E21,E,Endocrine,E21 (Hyperparathyroidism and other disorders of parathyroid gland)
+E22,E,Endocrine,E22 (Hyperfunction of pituitary gland)
+E23,E,Endocrine,E23 (Hypofunction and other disorders of pituitary gland)
+E240,E,Endocrine,E24.0 (Pituitary-dependent Cushing disease)
+E241,E,Endocrine,E24.1 (Nelson syndrome)
+E242,E,Endocrine,E24.2 (Drug-induced Cushing syndrome)
+E243,E,Endocrine,E24.3 (Ectopic ACTH syndrome)
+E248,E,Endocrine,E24.8 (Other Cushing syndrome)
+E249,E,Endocrine,"E24.9 (Cushing syndrome, unspecified)"
+E25,E,Endocrine,E25 (Adrenogenital disorders)
+E26,E,Endocrine,E26 (Hyperaldosteronism)
+E27,E,Endocrine,E27 (Other disorders of adrenal gland)
+E28,E,Endocrine,E28 (Ovarian dysfunction)
+E29,E,Endocrine,E29 (Testicular dysfunction)
+E30,E,Endocrine,"E30 (Disorders of puberty, not elsewhere classified)"
+E31,E,Endocrine,E31 (Polyglandular dysfunction)
+E32,E,Endocrine,E32 (Diseases of thymus)
+E34,E,Endocrine,E34 (Other endocrine disorders)
+E40-E46,E,Endocrine,E40-E46 (Malnutrition)
+E50-E64,E,Endocrine,E50-E64 (Other nutritional deficiencies)
+E65-E68,E,Endocrine,E65-E68 (Obesity and other hyperalimentation)
+E70-E88,E,Endocrine,E70-E88 (Metabolic disorders)
+X86,H,Homicide,X86 (Assault by corrosive substance)
+X87,H,Homicide,X87 (Assault by pesticides)
+X88,H,Homicide,X88 (Assault by gases and vapours)
+X89,H,Homicide,X89 (Assault by other specified chemicals and noxious substances)
+X90,H,Homicide,X90 (Assault by unspecified chemical or noxious substance)
+X91,H,Homicide,"X91 (Assault by hanging, strangulation and suffocation)"
+X92,H,Homicide,X92 (Assault by drowning and submersion)
+X93,H,Homicide,X93 (Assault by handgun discharge)
+X94,H,Homicide,"X94 (Assault by rifle, shotgun and larger firearm discharge)"
+X95,H,Homicide,X95 (Assault by other and unspecified firearm discharge)
+X96,H,Homicide,X96 (Assault by explosive material)
+X97,H,Homicide,"X97 (Assault by smoke, fire and flames)"
+X98,H,Homicide,"X98 (Assault by steam, hot vapours and hot objects)"
+X99,H,Homicide,X99 (Assault by sharp object)
+Y00,H,Homicide,Y00 (Assault by blunt object)
+Y01,H,Homicide,Y01 (Assault by pushing from high place)
+Y02,H,Homicide,Y02 (Assault by pushing or placing victim before moving object)
+Y03,H,Homicide,Y03 (Assault by crashing of motor vehicle)
+Y04,H,Homicide,Y04 (Assault by bodily force)
+Y05,H,Homicide,Y05 (Sexual assault by bodily force)
+Y06,H,Homicide,Y06 (Neglect and abandonment)
+Y07,H,Homicide,Y07 (Other maltreatment syndromes)
+Y08,H,Homicide,Y08 (Assault by other specified means)
+Y09,H,Homicide,Y09 (Assault by unspecified means)
+Y871,H,Homicide,Y87.1 (Sequelae of assault)
+I10-I15,C,Circulatory,I10-I15 (Hypertensive diseases)
+I00-I02,C,Circulatory,I00-I02 (Acute rheumatic fever)
+I05-I09,C,Circulatory,I05-I09 (Chronic rheumatic heart diseases)
+I20-I25,C,Circulatory,I20-I25 (Ischaemic heart diseases)
+I26-I28,C,Circulatory,I26-I28 (Pulmonary heart disease and diseases of pulmonary circulation)
+I30,C,Circulatory,I30 (Acute pericarditis)
+I31,C,Circulatory,I31 (Other diseases of pericardium)
+I33,C,Circulatory,I33 (Acute and subacute endocarditis)
+I34,C,Circulatory,I34 (Nonrheumatic mitral valve disorders)
+I35,C,Circulatory,I35 (Nonrheumatic aortic valve disorders)
+I36,C,Circulatory,I36 (Nonrheumatic tricuspid valve disorders)
+I37,C,Circulatory,I37 (Pulmonary valve disorders)
+I38,C,Circulatory,"I38 (Endocarditis, valve unspecified)"
+I40,C,Circulatory,I40 (Acute myocarditis)
+I420,C,Circulatory,I42.0 (Dilated cardiomyopathy)
+I421,C,Circulatory,I42.1 (Obstructive hypertrophic cardiomyopathy)
+I422,C,Circulatory,I42.2 (Other hypertrophic cardiomyopathy)
+I423,C,Circulatory,I42.3 (Endomyocardial (eosinophilic) disease)
+I424,C,Circulatory,I42.4 (Endocardial fibroelastosis)
+I425,C,Circulatory,I42.5 (Other restrictive cardiomyopathy)
+I427,C,Circulatory,I42.7 (Cardiomyopathy due to drugs and other external agents)
+I428,C,Circulatory,I42.8 (Other cardiomyopathies)
+I429,C,Circulatory,"I42.9 (Cardiomyopathy, unspecified)"
+I44,C,Circulatory,I44 (Atrioventricular and left bundle-branch block)
+I45,C,Circulatory,I45 (Other conduction disorders)
+I46,C,Circulatory,I46 (Cardiac arrest)
+I47,C,Circulatory,I47 (Paroxysmal tachycardia)
+I48,C,Circulatory,I48 (Atrial fibrillation and flutter)
+I49,C,Circulatory,I49 (Other cardiac arrhythmias)
+I50,C,Circulatory,I50 (Heart failure)
+I51,C,Circulatory,I51 (Complications and ill-defined descriptions of heart disease)
+I60-I69,C,Circulatory,I60-I69 (Cerebrovascular diseases)
+I70-I78,C,Circulatory,"I70-I78 (Diseases of arteries, arterioles and capillaries)"
+I80-I89,C,Circulatory,"I80-I89 (Diseases of veins, lymphatic vessels and lymph nodes, not elsewhere classified)"
+I95-I99,C,Circulatory,I95-I99 (Other and unspecified disorders of the circulatory system)
+B20-B24,O,Other natural,B20-B24 (Human immunodeficiency virus [HIV] disease)
+F01-F09,O,Other natural,"F01-F09 (Organic, including symptomatic, mental disorders)"
+F17,O,Other natural,F17 (Mental and behavioural disorders due to use of tobacco)
+F18,O,Other natural,F18 (Mental and behavioural disorders due to use of volatile solvents)
+F20-F29,O,Other natural,"F20-F29 (Schizophrenia, schizotypal and delusional disorders)"
+F30-F39,O,Other natural,F30-F39 (Mood [affective] disorders)
+F40-F48,O,Other natural,"F40-F48 (Neurotic, stress-related and somatoform disorders)"
+F50-F59,O,Other natural,F50-F59 (Behavioural syndromes associated with physiological disturbances and physical factors)
+F60-F69,O,Other natural,F60-F69 (Disorders of adult personality and behaviour)
+F70-F79,O,Other natural,F70-F79 (Mental retardation)
+F80-F89,O,Other natural,F80-F89 (Disorders of psychological development)
+F90-F98,O,Other natural,F90-F98 (Behavioural and emotional disorders with onset usually occurring in childhood and adolescence)
+F99-F99,O,Other natural,F99-F99 (Unspecified mental disorder)
+A00-A09,O,Other natural,A00-A09 (Intestinal infectious diseases)
+A16-A19,O,Other natural,A16-A19 (Tuberculosis)
+A20-A28,O,Other natural,A20-A28 (Certain zoonotic bacterial diseases)
+A30-A49,O,Other natural,A30-A49 (Other bacterial diseases)
+A50-A64,O,Other natural,A50-A64 (Infections with a predominantly sexual mode of transmission)
+A65-A69,O,Other natural,A65-A69 (Other spirochaetal diseases)
+A70-A74,O,Other natural,A70-A74 (Other diseases caused by chlamydiae)
+A75-A79,O,Other natural,A75-A79 (Rickettsioses)
+A80-A89,O,Other natural,A80-A89 (Viral infections of the central nervous system)
+A90-A99,O,Other natural,A90-A99 (Arthropod-borne viral fevers and viral haemorrhagic fevers)
+B00-B09,O,Other natural,B00-B09 (Viral infections characterized by skin and mucous membrane lesions)
+B15-B19,O,Other natural,B15-B19 (Viral hepatitis)
+B25-B34,O,Other natural,B25-B34 (Other viral diseases)
+B35-B49,O,Other natural,B35-B49 (Mycoses)
+B50-B64,O,Other natural,B50-B64 (Protozoal diseases)
+B65-B83,O,Other natural,B65-B83 (Helminthiases)
+B85-B89,O,Other natural,"B85-B89 (Pediculosis, acariasis and other infestations)"
+B90-B94,O,Other natural,B90-B94 (Sequelae of infectious and parasitic diseases)
+B99-B99,O,Other natural,B99-B99 (Other infectious diseases)
+D50-D89,O,Other natural,D50-D89 (Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism)
+G00-G09,O,Other natural,G00-G09 (Inflammatory diseases of the central nervous system)
+G10-G14,O,Other natural,G10-G14 (Systemic atrophies primarily affecting the central nervous system)
+G20-G25,O,Other natural,G20-G25 (Extrapyramidal and movement disorders)
+G30,O,Other natural,G30 (Alzheimer disease)
+G310,O,Other natural,G31.0 (Circumscribed brain atrophy)
+G311,O,Other natural,"G31.1 (Senile degeneration of brain, not elsewhere classified)"
+G318,O,Other natural,G31.8 (Other specified degenerative diseases of nervous system)
+G319,O,Other natural,"G31.9 (Degenerative disease of nervous system, unspecified)"
+G35-G37,O,Other natural,G35-G37 (Demyelinating diseases of the central nervous system)
+G40-G47,O,Other natural,G40-G47 (Episodic and paroxysmal disorders)
+G50-G58,O,Other natural,"G50-G58 (Nerve, nerve root and plexus disorders)"
+G60,O,Other natural,G60 (Hereditary and idiopathic neuropathy)
+G61,O,Other natural,G61 (Inflammatory polyneuropathy)
+G620,O,Other natural,G62.0 (Drug-induced polyneuropathy)
+G622,O,Other natural,G62.2 (Polyneuropathy due to other toxic agents)
+G628,O,Other natural,G62.8 (Other specified polyneuropathies)
+G629,O,Other natural,"G62.9 (Polyneuropathy, unspecified)"
+G64,O,Other natural,G64 (Other disorders of peripheral nervous system)
+G70,O,Other natural,G70 (Myasthenia gravis and other myoneural disorders)
+G71,O,Other natural,G71 (Primary disorders of muscles)
+G720,O,Other natural,G72.0 (Drug-induced myopathy)
+G722,O,Other natural,G72.2 (Myopathy due to other toxic agents)
+G723,O,Other natural,G72.3 (Periodic paralysis)
+G724,O,Other natural,"G72.4 (Inflammatory myopathy, not elsewhere classified)"
+G728,O,Other natural,G72.8 (Other specified myopathies)
+G729,O,Other natural,"G72.9 (Myopathy, unspecified)"
+G80-G83,O,Other natural,G80-G83 (Cerebral palsy and other paralytic syndromes)
+G90-G98,O,Other natural,G90-G98 (Other disorders of the nervous system)
+H00-H57,O,Other natural,H00-H57 (Diseases of the eye and adnexa)
+H60-H93,O,Other natural,H60-H93 (Diseases of the ear and mastoid process)
+L00-L98,O,Other natural,L00-L98 (Diseases of the skin and subcutaneous tissue)
+M00-M99,O,Other natural,M00-M99 (Diseases of the musculoskeletal system and connective tissue)
+N00-N98,O,Other natural,N00-N98 (Diseases of the genitourinary system)
+O00-O99,O,Other natural,"O00-O99 (Pregnancy, childbirth and the puerperium)"
+P00-P96,O,Other natural,P00-P96 (Certain conditions originating in the perinatal period)
+Q00-Q99,O,Other natural,"Q00-Q99 (Congenital malformations, deformations and chromosomal abnormalities)"
+R00-R09,O,Other natural,R00-R09 (Symptoms and signs involving the circulatory and respiratory systems)
+R10-R19,O,Other natural,R10-R19 (Symptoms and signs involving the digestive system and abdomen)
+R20-R23,O,Other natural,R20-R23 (Symptoms and signs involving the skin and subcutaneous tissue)
+R25-R29,O,Other natural,R25-R29 (Symptoms and signs involving the nervous and musculoskeletal systems)
+R30-R39,O,Other natural,R30-R39 (Symptoms and signs involving the urinary system)
+R40-R46,O,Other natural,"R40-R46 (Symptoms and signs involving cognition, perception, emotional state and behaviour)"
+R47-R49,O,Other natural,R47-R49 (Symptoms and signs involving speech and voice)
+R50-R68,O,Other natural,R50-R68 (General symptoms and signs)
+R70,O,Other natural,R70 (Elevated erythrocyte sedimentation rate and abnormality of plasma viscosity)
+R71,O,Other natural,R71 (Abnormality of red blood cells)
+R72,O,Other natural,"R72 (Abnormality of white blood cells, not elsewhere classified)"
+R73,O,Other natural,R73 (Elevated blood glucose level)
+R74,O,Other natural,R74 (Abnormal serum enzyme levels)
+R75,O,Other natural,R75 (Laboratory evidence of human immunodeficiency virus [HIV])
+R76,O,Other natural,R76 (Other abnormal immunological findings in serum)
+R77,O,Other natural,R77 (Other abnormalities of plasma proteins)
+R781,O,Other natural,R78.1 (Finding of opiate drug in blood)
+R782,O,Other natural,R78.2 (Finding of cocaine in blood)
+R783,O,Other natural,R78.3 (Finding of hallucinogen in blood)
+R784,O,Other natural,R78.4 (Finding of other drugs of addictive potential in blood)
+R785,O,Other natural,R78.5 (Finding of psychotropic drug in blood)
+R786,O,Other natural,R78.6 (Finding of steroid agent in blood)
+R787,O,Other natural,R78.7 (Finding of abnormal level of heavy metals in blood)
+R788,O,Other natural,"R78.8 (Finding of other specified substances, not normally found in blood)"
+R789,O,Other natural,"R78.9 (Finding of unspecified substance, not normally found in blood)"
+R79,O,Other natural,R79 (Other abnormal findings of blood chemistry)
+R80-R82,O,Other natural,"R80-R82 (Abnormal findings on examination of urine, without diagnosis)"
+R83-R89,O,Other natural,"R83-R89 (Abnormal findings on examination of other body fluids, substances and tissues, without diagnosis)"
+R90-R94,O,Other natural,"R90-R94 (Abnormal findings on diagnostic imaging and in function studies, without diagnosis)"
+R95-R99,O,Other natural,R95-R99 (Ill-defined and unknown causes of mortality)
+U04,O,Other natural,U04 (Severe acute respiratory syndrome [SARS])
+U070,O,Other natural,U07.0 (Vaping related disorder)
+J00-J98,R,Respiratory,J00-J98 (Diseases of the respiratory system)
+X66,S,Suicide,X66 (Intentional self-poisoning by and exposure to organic solvents and halogenated hydrocarbons and their vapours)
+X67,S,Suicide,X67 (Intentional self-poisoning by and exposure to other gases and vapours)
+X68,S,Suicide,X68 (Intentional self-poisoning by and exposure to pesticides)
+X69,S,Suicide,X69 (Intentional self-poisoning by and exposure to other and unspecified chemicals and noxious substances)
+X70,S,Suicide,"X70 (Intentional self-harm by hanging, strangulation and suffocation)"
+X71,S,Suicide,X71 (Intentional self-harm by drowning and submersion)
+X72,S,Suicide,X72 (Intentional self-harm by handgun discharge)
+X73,S,Suicide,"X73 (Intentional self-harm by rifle, shotgun and larger firearm discharge)"
+X74,S,Suicide,X74 (Intentional self-harm by other and unspecified firearm discharge)
+X75,S,Suicide,X75 (Intentional self-harm by explosive material)
+X76,S,Suicide,"X76 (Intentional self-harm by smoke, fire and flames)"
+X77,S,Suicide,"X77 (Intentional self-harm by steam, hot vapours and hot objects)"
+X78,S,Suicide,X78 (Intentional self-harm by sharp object)
+X79,S,Suicide,X79 (Intentional self-harm by blunt object)
+X80,S,Suicide,X80 (Intentional self-harm by jumping from a high place)
+X81,S,Suicide,X81 (Intentional self-harm by jumping or lying before moving object)
+X82,S,Suicide,X82 (Intentional self-harm by crashing of motor vehicle)
+X83,S,Suicide,X83 (Intentional self-harm by other specified means)
+X84,S,Suicide,X84 (Intentional self-harm by unspecified means)
+Y870,S,Suicide,Y87.0 (Sequelae of intentional self-harm)
+U01,O,Other external,U01 (Terrorism - Assault (homicide) )
+U02,O,Other external,U02 (Sequelae of terrorism)
+U03,O,Other external,U03 (Terrorism Intentional (Suicide))
+W00-W19,F,Falls,W00-W19 (Falls)
+W20-W49,O,Other external,W20-W49 (Exposure to inanimate mechanical forces)
+W50-W64,O,Other external,W50-W64 (Exposure to animate mechanical forces)
+W65-W74,O,Other external,W65-W74 (Accidental drowning and submersion)
+W75-W84,O,Other external,W75-W84 (Other accidental threats to breathing)
+W85-W99,O,Other external,"W85-W99 (Exposure to electric current, radiation and extreme ambient air temperature and pressure)"
+X00-X09,O,Other external,"X00-X09 (Exposure to smoke, fire and flames)"
+X10-X19,O,Other external,X10-X19 (Contact with heat and hot substances)
+X20-X29,O,Other external,X20-X29 (Contact with venomous animals and plants)
+X30-X39,O,Other external,X30-X39 (Exposure to forces of nature)
+X46,O,Other external,X46 (Accidental poisoning by and exposure to organic solvents and halogenated hydrocarbons and their vapours)
+X47,O,Other external,X47 (Accidental poisoning by and exposure to other gases and vapours)
+X48,O,Other external,X48 (Accidental poisoning by and exposure to pesticides)
+X49,O,Other external,X49 (Accidental poisoning by and exposure to other and unspecified chemicals and noxious substances)
+X50-X57,O,Other external,"X50-X57 (Overexertion, travel and privation)"
+Y16,O,Other external,"Y16 (Poisoning by and exposure to organic solvents and halogenated hydrocarbons and their vapours, undetermined intent)"
+Y17,O,Other external,"Y17 (Poisoning by and exposure to other gases and vapours, undetermined intent)"
+Y18,O,Other external,"Y18 (Poisoning by and exposure to pesticides, undetermined intent)"
+Y19,O,Other external,"Y19 (Poisoning by and exposure to other and unspecified chemicals and noxious substances, undetermined intent)"
+Y20,O,Other external,"Y20 (Hanging, strangulation and suffocation, undetermined intent)"
+Y21,O,Other external,"Y21 (Drowning and submersion, undetermined intent)"
+Y22,O,Other external,"Y22 (Handgun discharge, undetermined intent)"
+Y23,O,Other external,"Y23 (Rifle, shotgun and larger firearm discharge, undetermined intent)"
+Y24,O,Other external,"Y24 (Other and unspecified firearm discharge, undetermined intent)"
+Y25,O,Other external,"Y25 (Contact with explosive material, undetermined intent)"
+Y26,O,Other external,"Y26 (Exposure to smoke, fire and flames, undetermined intent)"
+Y27,O,Other external,"Y27 (Contact with steam, hot vapours and hot objects, undetermined intent)"
+Y28,O,Other external,"Y28 (Contact with sharp object, undetermined intent)"
+Y29,O,Other external,"Y29 (Contact with blunt object, undetermined intent)"
+Y30,O,Other external,"Y30 (Falling, jumping or pushed from a high place, undetermined intent)"
+Y31,O,Other external,"Y31 (Falling, lying or running before or into moving object, undetermined intent)"
+Y32,O,Other external,"Y32 (Crashing of motor vehicle, undetermined intent)"
+Y33,O,Other external,"Y33 (Other specified events, undetermined intent)"
+Y34,O,Other external,"Y34 (Unspecified event, undetermined intent)"
+Y86,O,Other external,Y86 (Sequelae of other accidents)
+Y872,O,Other external,Y87.2 (Sequelae of events of undetermined intent)
+Y88,O,Other external,Y88 (Sequelae with surgical and medical care as external cause)
+Y89,O,Other external,Y89 (Sequelae of other external causes)
+V01-V99,T,Transport ,V01-V99 (Transport accidents)
+Y85,T,Transport,Y85 (Sequelae of transport accidents)
+T36-T50,T,Drug poisoning,T36-T50 (Poisoning by drugs and biological substances)
