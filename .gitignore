@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Generated local reruns
+data/processed_snapshot/all_I=converted_with_original.csv
+data/processed_snapshot/all_I=converted_with_original.csv.tmp
+results/reproduced/logs/
+results/reproduced/figures/*.xlsx
+results/reproduced/figures/*.png
+results/reproduced/tables/*.xlsx
+results/reproduced/supplement/*.csv
+results/reproduced/supplement/*.tsv
+results/reproduced/supplement/*.xlsx
+results/reproduced/validation/*.json
+results/reproduced/validation/*.md

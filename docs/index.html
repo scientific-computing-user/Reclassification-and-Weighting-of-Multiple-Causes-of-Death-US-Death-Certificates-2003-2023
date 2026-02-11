@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>US Death Certificates 2003–2023</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --ink: #111827;
+      --muted: #4b5563;
+      --line: #dbe3ef;
+      --accent: #0f766e;
+      --accent-soft: #d1fae5;
+      --warn: #9a3412;
+      --warn-soft: #ffedd5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 0%, #d1fae5 0%, transparent 35%),
+        radial-gradient(circle at 85% 100%, #e0f2fe 0%, transparent 35%),
+        var(--bg);
+      line-height: 1.55;
+    }
+    .wrap {
+      width: min(1080px, 92vw);
+      margin: 0 auto;
+      padding: 2.5rem 0 4rem;
+    }
+    .hero {
+      background: linear-gradient(120deg, #ecfeff, #f0fdfa);
+      border: 1px solid #bae6fd;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 18px 45px rgba(2, 6, 23, 0.08);
+    }
+    h1 {
+      margin: 0 0 .6rem;
+      font-size: clamp(1.7rem, 3.5vw, 2.7rem);
+      letter-spacing: .01em;
+    }
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      max-width: 76ch;
+    }
+    .grid {
+      margin-top: 1.25rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: .8rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1rem;
+    }
+    .k {
+      color: var(--muted);
+      font-size: .85rem;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: .35rem;
+    }
+    .v {
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+    section {
+      margin-top: 1.4rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 1.25rem;
+    }
+    h2 {
+      margin: 0 0 .6rem;
+      font-size: 1.2rem;
+    }
+    ul {
+      margin: .4rem 0 0;
+      padding-left: 1.15rem;
+    }
+    li { margin: .35rem 0; }
+    code {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      padding: .12rem .34rem;
+      border-radius: 6px;
+      font-size: .92em;
+    }
+    .callout {
+      border: 1px solid #bae6fd;
+      background: #ecfeff;
+      border-radius: 12px;
+      padding: .8rem .9rem;
+      margin-top: .8rem;
+      color: #0c4a6e;
+    }
+    .warn {
+      border-color: #fdba74;
+      background: var(--warn-soft);
+      color: var(--warn);
+    }
+    .links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-right: 1rem;
+    }
+    .links a:hover { text-decoration: underline; }
+    footer {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <h1>What This Project Shows</h1>
+      <p class="subtitle">
+        This project studies how U.S. death-certificate causes changed after expert recoding (Entity Axis → Record Axis)
+        and how weighting multiple listed causes changes the apparent mortality burden across disease groups (2003–2023).
+      </p>
+      <div class="grid">
+        <article class="card">
+          <div class="k">Deaths analyzed</div>
+          <div class="v">56,986,831</div>
+        </article>
+        <article class="card">
+          <div class="k">Years covered</div>
+          <div class="v">2003–2023</div>
+        </article>
+        <article class="card">
+          <div class="k">Main signal</div>
+          <div class="v">Cause shifts are substantial</div>
+        </article>
+        <article class="card">
+          <div class="k">Reproducibility</div>
+          <div class="v">Command-level, script-based</div>
+        </article>
+      </div>
+    </header>
+
+    <section>
+      <h2>Plain-Language Findings</h2>
+      <ul>
+        <li>Recoding changes which condition is counted as the underlying cause for a meaningful fraction of deaths.</li>
+        <li>COVID-19 underlying counts increase strongly after recoding; some other categories move in the opposite direction.</li>
+        <li>When multiple causes are weighted (instead of attributing everything to one cause), burden shifts notably across categories.</li>
+        <li>Trend signals differ by age group; some categories rise over time while others decline in older populations.</li>
+      </ul>
+      <p class="callout">
+        All of the above is backed by reproducible scripts in this repository. Outputs are generated into <code>results/reproduced/</code>.
+      </p>
+    </section>
+
+    <section>
+      <h2>How To Reproduce</h2>
+      <ul>
+        <li>Install dependencies: <code>python3 -m pip install -r requirements.txt</code></li>
+        <li>Run the packaged workflow: <code>bash scripts/reproducibility/reproduce_snapshot.sh</code></li>
+        <li>The workflow auto-rebuilds <code>all_I=converted_with_original.csv</code> from split chunks in <code>data/processed_snapshot/all_I_parts/</code>.</li>
+        <li>Run claim validation directly: <code>python3 scripts/reproducibility/validate_claims.py --all-i data/processed_snapshot/all_I=converted_with_original.csv --lookup data/reference/icd10_to_DL_lookup_v4.csv --entity-column sel_code --output-json results/validation/claim_metrics.json --output-md results/validation/claim_check.md</code></li>
+      </ul>
+      <p class="callout">
+        The packaged run writes outputs to <code>results/reproduced/</code> and rebuilds required large-source inputs locally from chunked files.
+      </p>
+    </section>
+
+    <section>
+      <h2>Transparency Notes</h2>
+      <ul>
+        <li>The bundled snapshot reproduces most headline values closely but not every transition claim exactly.</li>
+        <li>Differences are surfaced explicitly in the automated claim-check report rather than hidden.</li>
+        <li>The report includes both observed values and paper targets for direct inspection.</li>
+      </ul>
+      <p class="callout warn">
+        This is a research reproducibility package, not clinical guidance.
+      </p>
+    </section>
+
+    <section>
+      <h2>Project Links</h2>
+      <p class="links">
+        <a href="../README.md">Repository README</a>
+        <a href="../paper/2026.01.31.26345264v1.full.pdf">Paper PDF</a>
+      </p>
+    </section>
+
+    <footer>
+      Built as a GitHub-ready reproducibility package for independent verification.
+    </footer>
+  </div>
+</body>
+</html>

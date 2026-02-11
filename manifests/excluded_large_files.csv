@@ -1,0 +1,11 @@
+source_path,size_bytes,excluded_from_github,reason,reproducibility_impact
+processed2_GH24.tgz,6932018790,yes,Raw archival bundle exceeds GitHub file-size limits,Not required for packaged snapshot run
+processed2_GH24/output/big_death_input.csv,7519426208,yes,Intermediate build artifact exceeds GitHub file-size limits,Not required for packaged snapshot run
+processed2_GH24/Dup==A/converted_with_original_use-last_eUCOD.csv,12828705280,yes,Intermediate build artifact exceeds GitHub file-size limits,Not required for packaged snapshot run
+processed2_GH24/Dup==A/all_I=converted_with_original.csv,7379729721,yes,Primary full-detail table exceeds GitHub file-size limits,Reconstructed locally from split chunks in data/processed_snapshot/all_I_parts
+processed2_GH24/Dup==A/I_converted_with_original-f18=sort=uniq-c=sort-rn.H.csv,378647955,yes,Derived table exceeds GitHub file-size limits,Required only for UCOD preference supplement regeneration
+processed2_GH24/Dup==A/I_converted_with_original-f2-3,9,17-18,ag=sort=uniq-c=sort-rn.H.csv,687520826,yes,Derived table exceeds GitHub file-size limits,Not required for packaged snapshot run
+processed2_GH24/Dup==A/I_converted_with_original-f2-5,17-19,22=sort=uniq-c=sort-rn.H.csv,1448016146,yes,Derived table exceeds GitHub file-size limits,Not required for packaged snapshot run
+processed2_GH24/Dup==A/I_converted_with_original-f2-7,9,10,11=sort=uniq-c=sort-rn.H.csv,753527729,yes,Derived table exceeds GitHub file-size limits,Not required for packaged snapshot run
+processed2_GH24/Dup==A/unknown_lines=use-last_eUCOD.csv,156577550,yes,Debug/diagnostic artifact exceeds GitHub file-size limits,Not required for packaged snapshot run
+processed2_GH24/Dup==A/convert_icd10_to_abbreviated_causes_aggregate_v4_fast_08.py=use-last_eUCOD.log,1390633208,yes,Execution log exceeds GitHub file-size limits,Not required for packaged snapshot run
