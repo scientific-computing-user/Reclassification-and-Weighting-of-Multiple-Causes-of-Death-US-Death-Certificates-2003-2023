@@ -2,6 +2,26 @@
 
 This is the clean, upload-ready GitHub package for the paper.
 
+## Explore the Interactive Website First
+
+<p align="center">
+  <a href="https://scientific-computing-user.github.io/Reclassification-and-Weighting-of-Multiple-Causes-of-Death-US-Death-Certificates-2003-2023/">
+    <img alt="Open Interactive Website" src="https://img.shields.io/badge/Open%20Interactive%20Website-06C1FF?style=for-the-badge&logo=githubpages&logoColor=white">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://scientific-computing-user.github.io/Reclassification-and-Weighting-of-Multiple-Causes-of-Death-US-Death-Certificates-2003-2023/"><strong>Click here to browse the results visually</strong></a>
+</p>
+
+<p align="center">
+  <video src="./video_website.mp4" autoplay muted loop playsinline controls width="100%">
+    Your browser does not support embedded video. <a href="./video_website.mp4">Open the video</a>.
+  </video>
+</p>
+
+Technical and reproducibility details are provided below.
+
 ## Structure
 
 - `paper/` — manuscript PDF
