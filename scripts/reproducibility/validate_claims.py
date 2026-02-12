@@ -13,7 +13,7 @@ import os
 import sys
 import time
 from collections import Counter
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Set, Tuple
 
 
 DL_NAME = {
@@ -54,8 +54,19 @@ def load_lookup(path: str) -> Dict[str, str]:
         if "ICD10" not in reader.fieldnames or "DL" not in reader.fieldnames:
             raise ValueError("Lookup CSV must contain ICD10 and DL columns")
         for row in reader:
-            lookup[row["ICD10"]] = row["DL"]
+            code = (row["ICD10"] or "").strip().upper().replace(".", "")
+            lookup[code] = row["DL"]
     return lookup
+
+
+def resolve_dl(code: str, lookup: Dict[str, str], external_prefix_fallback: Set[str]) -> Tuple[str, bool]:
+    normalized = (code or "").strip().upper().replace(".", "")
+    mapped = lookup.get(normalized, "")
+    if mapped and mapped != "?":
+        return mapped, False
+    if normalized and normalized[0] in external_prefix_fallback:
+        return "X", True
+    return mapped, False
 
 
 def required_index(header_map: Dict[str, int], column: str) -> int:
@@ -69,6 +80,7 @@ def scan_metrics(
     lookup: Dict[str, str],
     entity_column: str,
     progress_every: int,
+    external_prefix_fallback: Set[str],
 ) -> Dict[str, Any]:
     stats = Counter()
     period = {"pre": Counter(), "pan": Counter()}
@@ -123,8 +135,13 @@ def scan_metrics(
             if ruc and euc and ruc == euc:
                 stats["icd_concord"] += 1
 
-            rdl = lookup.get(ruc, "")
-            edl = lookup.get(euc, "")
+            rdl, rdl_from_fallback = resolve_dl(ruc, lookup, external_prefix_fallback)
+            edl, edl_from_fallback = resolve_dl(euc, lookup, external_prefix_fallback)
+
+            if rdl_from_fallback:
+                stats["fallback_record_axis"] += 1
+            if edl_from_fallback:
+                stats["fallback_entity_axis"] += 1
 
             if rdl:
                 rec_cat[rdl] += 1
@@ -181,6 +198,8 @@ def scan_metrics(
     metrics = {
         "runtime_seconds": elapsed_seconds,
         "entity_column": entity_column,
+        "external_prefix_fallback": "".join(sorted(external_prefix_fallback)),
+        "lookup_codes_count": len(lookup),
         "total_deaths": total,
         "single_ruds_count": stats["single_ruds"],
         "single_ruds_pct": pct(stats["single_ruds"], total),
@@ -207,6 +226,8 @@ def scan_metrics(
         "covid_promotion_to_demotion_ratio": promotion_ratio,
         "covid_promotions_from_J189": stats["covid_promotions_from_J189"],
         "covid_promotions_from_J189_pct": pct(stats["covid_promotions_from_J189"], promotion_count),
+        "fallback_record_axis": stats["fallback_record_axis"],
+        "fallback_entity_axis": stats["fallback_entity_axis"],
         "record_category_counts": dict(rec_cat),
         "entity_category_counts": dict(ent_cat),
         "category_change_pct": category_change_pct,
@@ -323,6 +344,8 @@ def write_markdown_report(path: str, metrics: Dict[str, Any], checks: List[Dict[
     lines.append(f"| COVID promotions | {metrics['covid_promotions']:,} |")
     lines.append(f"| COVID demotions | {metrics['covid_demotions']:,} |")
     lines.append(f"| J189 share of promotions (%) | {metrics['covid_promotions_from_J189_pct']:.3f} |")
+    lines.append(f"| External-prefix fallback uses (Record Axis) | {metrics['fallback_record_axis']:,} |")
+    lines.append(f"| External-prefix fallback uses (Entity Axis) | {metrics['fallback_entity_axis']:,} |")
     lines.append("")
     lines.append("## Paper Claim Checks")
     lines.append("")
@@ -399,6 +422,11 @@ def parse_args() -> argparse.Namespace:
         help="Print progress every N rows (0 disables progress logs)",
     )
     parser.add_argument(
+        "--external-prefix-fallback",
+        default="STVWXY",
+        help="Treat unmapped ICD prefixes in this set as Other External (X). Empty string disables.",
+    )
+    parser.add_argument(
         "--strict",
         action="store_true",
         help="Exit with code 1 if any claim check fails",
@@ -410,11 +438,13 @@ def main() -> int:
     args = parse_args()
 
     lookup = load_lookup(args.lookup)
+    external_prefix_fallback = set((args.external_prefix_fallback or "").upper())
     metrics = scan_metrics(
         all_i_path=args.all_i,
         lookup=lookup,
         entity_column=args.entity_column,
         progress_every=args.progress_every,
+        external_prefix_fallback=external_prefix_fallback,
     )
     checks = build_claim_checks(metrics)
 

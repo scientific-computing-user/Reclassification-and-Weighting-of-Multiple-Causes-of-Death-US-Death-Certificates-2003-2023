@@ -2,25 +2,23 @@
 
 - Entity comparison column: `sel_code`
 - Total deaths scanned: `56,986,831`
-- Runtime (seconds): `492.2`
-- Claim checks passed: `29/29`
-- Claim checks failed: `0`
+- Runtime (seconds): `463.4`
+- Claim checks passed: `25/29`
+- Claim checks failed: `4`
 
 ## Core Metrics
 
 | Metric | Value |
 |---|---:|
-| Category concordance (%) | 84.518 |
+| Category concordance (%) | 84.097 |
 | ICD concordance (%) | 68.638 |
-| Pre-pandemic category concordance (%) | 85.490 |
+| Pre-pandemic category concordance (%) | 85.052 |
 | Pre-pandemic ICD concordance (%) | 69.809 |
-| Pandemic category concordance (%) | 81.297 |
+| Pandemic category concordance (%) | 80.935 |
 | Pandemic ICD concordance (%) | 64.761 |
 | COVID promotions | 503,255 |
 | COVID demotions | 20,655 |
 | J189 share of promotions (%) | 43.787 |
-| External-prefix fallback uses (Record Axis) | 206,909 |
-| External-prefix fallback uses (Entity Axis) | 1,088,164 |
 
 ## Paper Claim Checks
 
@@ -29,11 +27,11 @@
 | Total deaths | 56,986,831 | 56,986,831 | 0 | 0 | PASS |
 | Part-I last-line multiple ICD count | 7,749,865 | 7,749,865 | 0 | 0 | PASS |
 | Part-I last-line multiple ICD pct | 13.600 | 13.599 | -0.001 | 0.200 | PASS |
-| Category concordance pct | 84.800 | 84.518 | -0.282 | 1.000 | PASS |
+| Category concordance pct | 84.800 | 84.097 | -0.703 | 1.000 | PASS |
 | ICD concordance pct | 68.900 | 68.638 | -0.262 | 0.600 | PASS |
-| Pre-pandemic category concordance pct | 85.700 | 85.490 | -0.210 | 1.000 | PASS |
+| Pre-pandemic category concordance pct | 85.700 | 85.052 | -0.648 | 1.000 | PASS |
 | Pre-pandemic ICD concordance pct | 70.100 | 69.809 | -0.291 | 0.800 | PASS |
-| Pandemic category concordance pct | 81.600 | 81.297 | -0.303 | 1.000 | PASS |
+| Pandemic category concordance pct | 81.600 | 80.935 | -0.665 | 1.000 | PASS |
 | Pandemic ICD concordance pct | 65.000 | 64.761 | -0.239 | 0.800 | PASS |
 | Category change COVID-19 pct | 92.000 | 92.369 | 0.369 | 3.000 | PASS |
 | Category change Falls pct | 69.000 | 69.371 | 0.371 | 3.000 | PASS |
@@ -44,12 +42,12 @@
 | Category change Cancer pct | 12.000 | 12.227 | 0.227 | 3.000 | PASS |
 | Category change Other Natural pct | -14.000 | -13.276 | 0.724 | 3.000 | PASS |
 | Category change Respiratory pct | -11.000 | -11.004 | -0.004 | 3.000 | PASS |
-| Category change Other External pct | -54.000 | -53.598 | 0.402 | 6.000 | PASS |
+| Category change Other External pct | -54.000 | 29.363 | 83.363 | 6.000 | FAIL |
 | Transition R->V count | 288,936 | 288,922 | -14 | 5,000 | PASS |
 | Transition N->V count | 119,181 | 119,143 | -38 | 5,000 | PASS |
-| Transition X->T count | 266,638 | 266,051 | -587 | 5,000 | PASS |
-| Transition X->F count | 218,625 | 218,235 | -390 | 5,000 | PASS |
-| Transition X->S count | 139,167 | 138,544 | -623 | 5,000 | PASS |
+| Transition X->T count | 266,638 | 786 | -265,852 | 5,000 | FAIL |
+| Transition X->F count | 218,625 | 1,117 | -217,508 | 5,000 | FAIL |
+| Transition X->S count | 139,167 | 72 | -139,095 | 5,000 | FAIL |
 | Transition A->P count | 87,860 | 87,843 | -17 | 5,000 | PASS |
 | COVID promotions count | 502,461 | 503,255 | 794 | 5,000 | PASS |
 | COVID demotions count | 20,765 | 20,655 | -110 | 1,000 | PASS |
@@ -71,6 +69,6 @@
 | D | Digestive | 1,672,700 | 1,731,328 | 3.505 |
 | A | Alcohol-related | 682,890 | 679,891 | -0.439 |
 | P | Drug Poisoning | 1,129,804 | 1,229,718 | 8.843 |
-| X | Other External | 1,447,386 | 671,609 | -53.598 |
+| X | Other External | 359,222 | 464,700 | 29.363 |
 | N | Other Natural | 12,329,332 | 10,692,497 | -13.276 |
 | R | Respiratory | 5,964,045 | 5,307,742 | -11.004 |

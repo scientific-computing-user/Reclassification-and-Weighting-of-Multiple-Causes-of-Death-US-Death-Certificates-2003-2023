@@ -114,6 +114,7 @@ if [[ -s "${WORK_DIR}/all_I=converted_with_original.csv" ]]; then
   "${PYTHON_BIN}" "${ROOT_DIR}/scripts/reproducibility/validate_claims.py" \
     --all-i "${WORK_DIR}/all_I=converted_with_original.csv" \
     --lookup "${DATA_DIR}/reference/icd10_to_DL_lookup_v4.csv" \
+    --external-prefix-fallback STVWXY \
     --entity-column sel_code \
     --output-json "${OUT_DIR}/validation/claim_metrics.json" \
     --output-md "${OUT_DIR}/validation/claim_check.md" \

@@ -1,9 +1,7 @@
 {
   "metrics": {
-    "runtime_seconds": 492.2283687591553,
+    "runtime_seconds": 463.6896629333496,
     "entity_column": "sel_code",
-    "external_prefix_fallback": "STVWXY",
-    "lookup_codes_count": 7588,
     "total_deaths": 56986831,
     "single_ruds_count": 21160100,
     "single_ruds_pct": 37.13156114962771,
@@ -30,8 +28,6 @@
     "covid_promotion_to_demotion_ratio": 24.36480271120794,
     "covid_promotions_from_J189": 220361,
     "covid_promotions_from_J189_pct": 43.7871456816127,
-    "fallback_record_axis": 206909,
-    "fallback_entity_axis": 1088164,
     "record_category_counts": {
       "B": 17815572,
       "C": 12576095,

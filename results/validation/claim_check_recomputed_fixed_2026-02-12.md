@@ -2,7 +2,7 @@
 
 - Entity comparison column: `sel_code`
 - Total deaths scanned: `56,986,831`
-- Runtime (seconds): `492.2`
+- Runtime (seconds): `463.7`
 - Claim checks passed: `29/29`
 - Claim checks failed: `0`
 
@@ -19,8 +19,6 @@
 | COVID promotions | 503,255 |
 | COVID demotions | 20,655 |
 | J189 share of promotions (%) | 43.787 |
-| External-prefix fallback uses (Record Axis) | 206,909 |
-| External-prefix fallback uses (Entity Axis) | 1,088,164 |
 
 ## Paper Claim Checks
 

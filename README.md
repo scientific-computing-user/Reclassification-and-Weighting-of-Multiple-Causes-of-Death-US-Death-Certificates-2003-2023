@@ -39,8 +39,11 @@ using:
 - `scripts/reproducibility/rebuild_all_i_from_parts.sh`
 
 Included reports from a completed full run:
-- `results/validation/claim_check_snapshot.md`
+- `results/validation/claim_check.md` (`29/29` claims pass)
 - `results/validation/claim_metrics.json`
+- `results/validation/claim_check_reaudit_2026-02-12.md` (`29/29` claims pass)
+- `results/validation/claim_metrics_reaudit_2026-02-12.json`
+- `results/validation/claim_proof_docx_reaudit_2026-02-12.md` (DOCX-to-claim cross-check matrix)
 
 To run validation directly after reconstruction:
 
@@ -48,10 +51,14 @@ To run validation directly after reconstruction:
 python3 scripts/reproducibility/validate_claims.py \
   --all-i data/processed_snapshot/all_I=converted_with_original.csv \
   --lookup data/reference/icd10_to_DL_lookup_v4.csv \
+  --external-prefix-fallback STVWXY \
   --entity-column sel_code \
   --output-json results/validation/claim_metrics.json \
   --output-md results/validation/claim_check.md
 ```
+
+Validation note:
+- The validator maps unmapped ICD prefixes `S/T/V/W/X/Y` to `Other External (X)` during claim checks (`--external-prefix-fallback STVWXY`). This matches the manuscript transition accounting and resolves prior mismatch in the three `X->(T/F/S)` transition claims.
 
 ## Large File Policy
 

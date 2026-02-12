@@ -9,7 +9,8 @@ __pycache__/
 data/processed_snapshot/all_I=converted_with_original.csv
 data/processed_snapshot/all_I=converted_with_original.csv.tmp
 data/mcd/
-results/reproduced/logs/
+results/reproduced/logs/*
+!results/reproduced/logs/README.md
 results/reproduced/figures/*.xlsx
 results/reproduced/figures/*.png
 results/reproduced/tables/*.xlsx
@@ -18,3 +19,4 @@ results/reproduced/supplement/*.tsv
 results/reproduced/supplement/*.xlsx
 results/reproduced/validation/*.json
 results/reproduced/validation/*.md
+!results/reproduced/validation/README.md
