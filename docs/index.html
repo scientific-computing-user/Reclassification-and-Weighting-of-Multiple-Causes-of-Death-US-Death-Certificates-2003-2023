@@ -593,6 +593,7 @@
     </main>
   </div>
 
+  <script src="assets/site_data.js"></script>
   <script>
     const CATEGORY_ORDER = ["V", "F", "T", "S", "H", "E", "C", "B", "D", "A", "P", "X", "N", "R", "U"];
     const CATEGORY_COLOR = {
@@ -1094,12 +1095,67 @@
         .join("");
     }
 
-    async function fetchData() {
-      const response = await fetch("assets/site_data.json", { cache: "no-cache" });
-      if (!response.ok) {
-        throw new Error(`Unable to fetch site data (${response.status})`);
+    function escapeHtml(input) {
+      return String(input)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll("\"", "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function dataCandidateUrls() {
+      const candidates = new Set();
+      const loc = window.location;
+      const currentHref = loc.href;
+
+      candidates.add(new URL("assets/site_data.json", currentHref).href);
+      candidates.add(new URL("./assets/site_data.json", currentHref).href);
+      candidates.add(new URL("../assets/site_data.json", currentHref).href);
+
+      const pathParts = loc.pathname.split("/").filter(Boolean);
+      if (loc.protocol !== "file:" && pathParts.length > 0) {
+        const repoBase = `/${pathParts[0]}`;
+        candidates.add(`${loc.origin}${repoBase}/assets/site_data.json`);
+        candidates.add(`${loc.origin}${repoBase}/docs/assets/site_data.json`);
+        candidates.add(`${loc.origin}/assets/site_data.json`);
+        candidates.add(`${loc.origin}/docs/assets/site_data.json`);
       }
-      return response.json();
+
+      candidates.add("assets/site_data.json");
+      candidates.add("./assets/site_data.json");
+      return Array.from(candidates);
+    }
+
+    async function fetchData() {
+      if (window.__SITE_DATA__) {
+        return window.__SITE_DATA__;
+      }
+
+      const failures = [];
+      for (const url of dataCandidateUrls()) {
+        try {
+          const response = await fetch(url, { cache: "no-cache" });
+          if (!response.ok) {
+            failures.push(`${url} -> HTTP ${response.status}`);
+            continue;
+          }
+          const parsed = await response.json();
+          if (!parsed || typeof parsed !== "object") {
+            failures.push(`${url} -> invalid JSON payload`);
+            continue;
+          }
+          return parsed;
+        } catch (error) {
+          failures.push(`${url} -> ${error.message}`);
+        }
+      }
+
+      if (window.__SITE_DATA__) {
+        return window.__SITE_DATA__;
+      }
+
+      throw new Error(failures.join("\n"));
     }
 
     async function boot() {
@@ -1118,7 +1174,11 @@
         el.loading.classList.add("hidden");
         el.app.classList.remove("hidden");
       } catch (error) {
-        el.loading.innerHTML = "Failed to load interactive data. Check docs/assets/site_data.json.";
+        const fileHint =
+          window.location.protocol === "file:"
+            ? "<br><br>Local file mode detected. Start a local server from `docs/` (for example: `python3 -m http.server 8000`) and open `http://localhost:8000/`."
+            : "";
+        el.loading.innerHTML = `Failed to load interactive data.<br><br><small>${escapeHtml(error.message || "Unknown error")}${fileHint}</small>`;
         console.error(error);
       }
     }

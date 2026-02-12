@@ -67,6 +67,7 @@ def build_output(
     overall_csv: Path,
     claim_json: Path,
     output_json: Path,
+    output_js: Path = None,
 ) -> None:
     yearly = aggregate_rows(
         path=year_csv,
@@ -199,6 +200,13 @@ def build_output(
     with output_json.open("w") as handle:
         json.dump(payload, handle)
 
+    if output_js is not None:
+        output_js.parent.mkdir(parents=True, exist_ok=True)
+        with output_js.open("w") as handle:
+            handle.write("window.__SITE_DATA__ = ")
+            json.dump(payload, handle)
+            handle.write(";\n")
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build docs site dataset JSON")
@@ -207,6 +215,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--overall-csv", default="data/output_agg/overall_agg.csv")
     parser.add_argument("--claim-json", default="results/validation/claim_metrics.json")
     parser.add_argument("--output-json", default="docs/assets/site_data.json")
+    parser.add_argument("--output-js", default="docs/assets/site_data.js")
     return parser.parse_args()
 
 
@@ -218,6 +227,7 @@ def main() -> int:
         overall_csv=Path(args.overall_csv),
         claim_json=Path(args.claim_json),
         output_json=Path(args.output_json),
+        output_js=Path(args.output_js),
     )
     return 0
 
