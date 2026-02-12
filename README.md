@@ -15,9 +15,13 @@ This is the clean, upload-ready GitHub package for the paper.
 </p>
 
 <p align="center">
-  <video src="./video_website.mp4" autoplay muted loop playsinline controls width="100%">
-    Your browser does not support embedded video. <a href="./video_website.mp4">Open the video</a>.
-  </video>
+  <a href="https://scientific-computing-user.github.io/Reclassification-and-Weighting-of-Multiple-Causes-of-Death-US-Death-Certificates-2003-2023/">
+    <img src="./video_website_preview.gif" alt="Interactive website preview" width="100%">
+  </a>
+</p>
+
+<p align="center">
+  <a href="./video_website.mp4">Open full MP4 preview</a>
 </p>
 
 Technical and reproducibility details are provided below.
