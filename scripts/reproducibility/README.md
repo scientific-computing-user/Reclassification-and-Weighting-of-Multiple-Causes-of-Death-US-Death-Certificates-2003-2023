@@ -49,3 +49,17 @@ Runs numerical claim checks against `all_I` data.
 - `--external-prefix-fallback STVWXY`:
   - Treats unmapped ICD prefixes `S/T/V/W/X/Y` as `Other External (X)` for category transition checks.
   - This is the validated configuration that aligns all reported manuscript claims in the packaged rerun.
+
+## `build_site_data.py`
+
+Builds compact website data assets for `docs/index.html`.
+
+- Input:
+  - `data/output_agg/year_agg.csv`
+  - `data/output_agg/month_idx_agg.csv`
+  - `data/output_agg/overall_agg.csv`
+  - `results/validation/claim_metrics.json`
+- Output:
+  - `docs/assets/site_data.json`
+- Usage:
+  - `python3 scripts/reproducibility/build_site_data.py`

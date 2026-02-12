@@ -3,205 +3,860 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>US Death Certificates 2003–2023</title>
+  <title>US Death Certificates 2003–2023 Interactive Atlas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   <style>
     :root {
-      --bg: #f5f7fb;
+      --bg: #f1f5f9;
       --surface: #ffffff;
-      --ink: #111827;
-      --muted: #4b5563;
-      --line: #dbe3ef;
-      --accent: #0f766e;
-      --accent-soft: #d1fae5;
-      --warn: #9a3412;
-      --warn-soft: #ffedd5;
+      --ink: #0b1c2d;
+      --muted: #4a6178;
+      --line: #d6e3ef;
+      --accent: #005f73;
+      --accent-soft: #d9f4f6;
+      --accent-2: #ae2012;
+      --shadow: 0 16px 40px rgba(7, 17, 28, 0.12);
+      --good: #1b8a5a;
+      --bad: #c23326;
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+      font-family: "Source Sans 3", "Segoe UI", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at 15% 0%, #d1fae5 0%, transparent 35%),
-        radial-gradient(circle at 85% 100%, #e0f2fe 0%, transparent 35%),
+        radial-gradient(circle at 12% 6%, #c2f1f5 0%, transparent 36%),
+        radial-gradient(circle at 86% 0%, #ffe5db 0%, transparent 32%),
         var(--bg);
       line-height: 1.55;
     }
-    .wrap {
-      width: min(1080px, 92vw);
+
+    .container {
+      width: min(1180px, 94vw);
       margin: 0 auto;
-      padding: 2.5rem 0 4rem;
+      padding: 2rem 0 3rem;
     }
+
     .hero {
-      background: linear-gradient(120deg, #ecfeff, #f0fdfa);
-      border: 1px solid #bae6fd;
-      border-radius: 20px;
-      padding: 2rem;
-      box-shadow: 0 18px 45px rgba(2, 6, 23, 0.08);
+      border: 1px solid #b6d9e6;
+      border-radius: 24px;
+      background: linear-gradient(130deg, #f2fdff, #edf6ff 48%, #fff7f1);
+      box-shadow: var(--shadow);
+      padding: 1.8rem;
     }
+
+    h1, h2, h3 {
+      font-family: "Space Grotesk", "Source Sans 3", sans-serif;
+      letter-spacing: 0.01em;
+      margin: 0;
+    }
+
     h1 {
-      margin: 0 0 .6rem;
-      font-size: clamp(1.7rem, 3.5vw, 2.7rem);
-      letter-spacing: .01em;
+      font-size: clamp(1.6rem, 3.3vw, 2.55rem);
+      margin-bottom: 0.55rem;
     }
+
+    h2 {
+      font-size: clamp(1.2rem, 2vw, 1.55rem);
+      margin-bottom: 0.8rem;
+    }
+
+    h3 {
+      font-size: 1.06rem;
+      margin-bottom: 0.55rem;
+    }
+
     .subtitle {
+      max-width: 86ch;
       margin: 0;
       color: var(--muted);
-      max-width: 76ch;
+      font-size: 1.02rem;
     }
-    .grid {
-      margin-top: 1.25rem;
+
+    .metrics {
+      margin-top: 1.1rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: .8rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.72rem;
     }
-    .card {
+
+    .metric {
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: 14px;
-      padding: 1rem;
+      padding: 0.85rem 0.9rem;
     }
-    .k {
+
+    .metric-k {
       color: var(--muted);
-      font-size: .85rem;
       text-transform: uppercase;
-      letter-spacing: .07em;
-      margin-bottom: .35rem;
-    }
-    .v {
-      font-size: 1.35rem;
+      letter-spacing: 0.08em;
+      font-size: 0.74rem;
+      margin-bottom: 0.28rem;
       font-weight: 700;
     }
-    section {
-      margin-top: 1.4rem;
-      background: var(--surface);
+
+    .metric-v {
+      font-family: "Space Grotesk", "Source Sans 3", sans-serif;
+      font-size: 1.34rem;
+      font-weight: 700;
+    }
+
+    .panel {
+      margin-top: 1rem;
       border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 1.25rem;
+      border-radius: 18px;
+      background: var(--surface);
+      box-shadow: 0 9px 25px rgba(13, 28, 43, 0.08);
+      padding: 1rem;
     }
-    h2 {
-      margin: 0 0 .6rem;
-      font-size: 1.2rem;
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.65rem;
+      margin-bottom: 0.7rem;
     }
-    ul {
-      margin: .4rem 0 0;
-      padding-left: 1.15rem;
+
+    .control {
+      display: flex;
+      flex-direction: column;
+      gap: 0.34rem;
     }
-    li { margin: .35rem 0; }
-    code {
-      background: #f3f4f6;
-      border: 1px solid #e5e7eb;
-      padding: .12rem .34rem;
-      border-radius: 6px;
-      font-size: .92em;
+
+    label {
+      font-size: 0.83rem;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
-    .callout {
-      border: 1px solid #bae6fd;
-      background: #ecfeff;
-      border-radius: 12px;
-      padding: .8rem .9rem;
-      margin-top: .8rem;
-      color: #0c4a6e;
+
+    select,
+    input[type="search"],
+    input[type="range"] {
+      border: 1px solid #c1d2e3;
+      border-radius: 10px;
+      background: #fbfdff;
+      padding: 0.52rem 0.6rem;
+      font-size: 0.96rem;
+      color: var(--ink);
     }
-    .warn {
-      border-color: #fdba74;
-      background: var(--warn-soft);
-      color: var(--warn);
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.65rem;
     }
-    .links a {
+
+    .chip {
+      border: 1px solid #bad6e8;
+      background: #f4fbff;
+      border-radius: 999px;
+      padding: 0.28rem 0.62rem;
+      font-size: 0.83rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .chip input {
+      margin: 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .plot {
+      width: 100%;
+      min-height: 360px;
+    }
+
+    .plot.short {
+      min-height: 300px;
+    }
+
+    .note {
+      margin-top: 0.55rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .statline {
+      margin-top: 0.52rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+      font-size: 0.94rem;
+    }
+
+    thead {
+      background: #f0f6fc;
+    }
+
+    th,
+    td {
+      border: 1px solid #dbe7f2;
+      padding: 0.42rem 0.5rem;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    th:first-child,
+    td:first-child {
+      text-align: left;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 0.15rem 0.52rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .pass {
+      color: var(--good);
+      background: #e8f7ef;
+    }
+
+    .fail {
+      color: var(--bad);
+      background: #fdecec;
+    }
+
+    .link-row {
+      margin-top: 0.7rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      font-weight: 700;
+    }
+
+    a {
       color: var(--accent);
       text-decoration: none;
-      font-weight: 600;
-      margin-right: 1rem;
     }
-    .links a:hover { text-decoration: underline; }
-    footer {
-      margin-top: 1rem;
-      color: var(--muted);
-      font-size: .92rem;
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .loading {
+      display: inline-block;
+      border: 2px solid #e2edf6;
+      border-top: 2px solid var(--accent);
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      animation: spin 0.9s linear infinite;
+      vertical-align: middle;
+      margin-right: 0.42rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(1200px, 97vw);
+      }
+      .panel, .hero {
+        padding: 0.86rem;
+      }
+      th, td {
+        font-size: 0.86rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="container">
     <header class="hero">
-      <h1>What This Project Shows</h1>
+      <h1>US Death Certificates (2003–2023): Interactive Reclassification Atlas</h1>
       <p class="subtitle">
-        This project studies how U.S. death-certificate causes changed after expert recoding (Entity Axis → Record Axis)
-        and how weighting multiple listed causes changes the apparent mortality burden across disease groups (2003–2023).
+        Explore how cause-of-death classification changes between Entity Axis and Record Axis, and how weighting schemes shift burden attribution.
+        This page is backed by reproducible outputs in this repository and includes claim-level validation status.
       </p>
-      <div class="grid">
-        <article class="card">
-          <div class="k">Deaths analyzed</div>
-          <div class="v">56,986,831</div>
-        </article>
-        <article class="card">
-          <div class="k">Years covered</div>
-          <div class="v">2003–2023</div>
-        </article>
-        <article class="card">
-          <div class="k">Main signal</div>
-          <div class="v">Cause shifts are substantial</div>
-        </article>
-        <article class="card">
-          <div class="k">Reproducibility</div>
-          <div class="v">Command-level, script-based</div>
-        </article>
+      <div id="top-metrics" class="metrics"></div>
+      <p class="note" id="dataset-meta"></p>
+      <div class="link-row">
+        <a href="https://github.com/scientific-computing-user/Reclassification-and-Weighting-of-Multiple-Causes-of-Death-US-Death-Certificates-2003-2023" target="_blank" rel="noopener">Open Repository</a>
+        <a href="https://github.com/scientific-computing-user/Reclassification-and-Weighting-of-Multiple-Causes-of-Death-US-Death-Certificates-2003-2023/blob/main/results/validation/claim_check.md" target="_blank" rel="noopener">Open Latest Claim Report</a>
+        <a href="https://github.com/scientific-computing-user/Reclassification-and-Weighting-of-Multiple-Causes-of-Death-US-Death-Certificates-2003-2023/blob/main/paper/2026.01.31.26345264v1.full.pdf" target="_blank" rel="noopener">Open Manuscript PDF</a>
       </div>
     </header>
 
-    <section>
-      <h2>Plain-Language Findings</h2>
-      <ul>
-        <li>Recoding changes which condition is counted as the underlying cause for a meaningful fraction of deaths.</li>
-        <li>COVID-19 underlying counts increase strongly after recoding; some other categories move in the opposite direction.</li>
-        <li>When multiple causes are weighted (instead of attributing everything to one cause), burden shifts notably across categories.</li>
-        <li>Trend signals differ by age group; some categories rise over time while others decline in older populations.</li>
-      </ul>
-      <p class="callout">
-        All of the above is backed by reproducible scripts in this repository. Outputs are generated into <code>results/reproduced/</code>.
-      </p>
+    <section class="panel">
+      <h2>Trend Explorer</h2>
+      <p class="note">Choose scheme, age bucket, and categories. Lines show weighted annual deaths by category.</p>
+      <div class="controls">
+        <div class="control">
+          <label for="trend-scheme">Weighting Scheme</label>
+          <select id="trend-scheme"></select>
+        </div>
+        <div class="control">
+          <label for="trend-bucket">Age Bucket</label>
+          <select id="trend-bucket"></select>
+        </div>
+      </div>
+      <div id="category-chips" class="chip-row"></div>
+      <div id="trend-plot" class="plot"></div>
     </section>
 
-    <section>
-      <h2>How To Reproduce</h2>
-      <ul>
-        <li>Install dependencies: <code>python3 -m pip install -r requirements.txt</code></li>
-        <li>Run the packaged workflow: <code>bash scripts/reproducibility/reproduce_snapshot.sh</code></li>
-        <li>The workflow auto-rebuilds <code>all_I=converted_with_original.csv</code> from split chunks in <code>data/processed_snapshot/all_I_parts/</code>.</li>
-        <li>Run claim validation directly: <code>python3 scripts/reproducibility/validate_claims.py --all-i data/processed_snapshot/all_I=converted_with_original.csv --lookup data/reference/icd10_to_DL_lookup_v4.csv --external-prefix-fallback STVWXY --entity-column sel_code --output-json results/validation/claim_metrics.json --output-md results/validation/claim_check.md</code></li>
-      </ul>
-      <p class="callout">
-        The packaged run writes outputs to <code>results/reproduced/</code> and rebuilds required large-source inputs locally from chunked files.
-      </p>
-      <p class="callout">
-        Raw yearly source files in <code>data/mcd/</code> are intentionally not bundled in this GitHub package and are shared separately by the authors.
-      </p>
+    <div class="grid-2">
+      <section class="panel">
+        <h2>Monthly Heatmap</h2>
+        <p class="note">Inspect within-year seasonality for a selected category.</p>
+        <div class="controls">
+          <div class="control">
+            <label for="month-scheme">Weighting Scheme</label>
+            <select id="month-scheme"></select>
+          </div>
+          <div class="control">
+            <label for="month-bucket">Age Bucket</label>
+            <select id="month-bucket"></select>
+          </div>
+          <div class="control">
+            <label for="month-letter">Category</label>
+            <select id="month-letter"></select>
+          </div>
+        </div>
+        <div id="month-heatmap" class="plot short"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Reclassification Effects</h2>
+        <p class="note">Relative percentage change from Entity Axis to Record Axis by broad category.</p>
+        <div id="change-bar" class="plot short"></div>
+      </section>
+    </div>
+
+    <div class="grid-2">
+      <section class="panel">
+        <h2>Category Count Comparison</h2>
+        <p class="note">Absolute underlying-cause counts in Record vs Entity axes.</p>
+        <div id="count-bar" class="plot short"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Transition Network</h2>
+        <p class="note">Top flows from Entity category to Record category (underlying cause).</p>
+        <div class="controls">
+          <div class="control">
+            <label for="transition-threshold">Minimum Flow Count</label>
+            <input id="transition-threshold" type="range" min="10000" max="300000" step="5000" value="60000">
+          </div>
+          <div class="control">
+            <label for="transition-max-edges">Max Edges</label>
+            <input id="transition-max-edges" type="range" min="8" max="40" step="1" value="20">
+          </div>
+        </div>
+        <div class="statline">
+          <span id="threshold-label"></span>
+          <span id="edge-label"></span>
+        </div>
+        <div id="transition-sankey" class="plot short"></div>
+      </section>
+    </div>
+
+    <section class="panel">
+      <h2>Claim Validation Table</h2>
+      <p class="note">Each manuscript claim is checked against recomputed values from the packaged dataset.</p>
+      <div class="controls">
+        <div class="control">
+          <label for="claim-filter">Status</label>
+          <select id="claim-filter">
+            <option value="all">All</option>
+            <option value="pass">PASS</option>
+            <option value="fail">FAIL</option>
+          </select>
+        </div>
+        <div class="control">
+          <label for="claim-search">Search Claim</label>
+          <input id="claim-search" type="search" placeholder="e.g. Transition X->T">
+        </div>
+      </div>
+      <div style="overflow:auto; max-height: 420px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Claim</th>
+              <th>Expected</th>
+              <th>Observed</th>
+              <th>Difference</th>
+              <th>Tolerance</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="claim-table-body"></tbody>
+        </table>
+      </div>
     </section>
 
-    <section>
-      <h2>Transparency Notes</h2>
-      <ul>
-        <li>The bundled snapshot is re-audited with automated checks that validate all headline manuscript claims.</li>
-        <li>The latest full run passes all configured checks (29/29), including previously disputed Other External transition counts.</li>
-        <li>All reports include observed values, paper targets, and tolerances for direct inspection.</li>
-      </ul>
-      <p class="callout warn">
-        This is a research reproducibility package, not clinical guidance.
-      </p>
+    <section class="panel">
+      <h2>Transition Table</h2>
+      <p class="note">Sortable top transitions by count (Entity -> Record).</p>
+      <div style="overflow:auto; max-height: 360px;">
+        <table>
+          <thead>
+            <tr>
+              <th>From</th>
+              <th>To</th>
+              <th>Count</th>
+            </tr>
+          </thead>
+          <tbody id="transition-table-body"></tbody>
+        </table>
+      </div>
     </section>
-
-    <section>
-      <h2>Project Links</h2>
-      <p class="links">
-        <a href="../README.md">Repository README</a>
-        <a href="../paper/2026.01.31.26345264v1.full.pdf">Paper PDF</a>
-      </p>
-    </section>
-
-    <footer>
-      Built as a GitHub-ready reproducibility package for independent verification.
-    </footer>
   </div>
+
+  <script>
+    const LETTER_ORDER = ["V", "F", "T", "S", "H", "E", "C", "B", "D", "A", "P", "X", "N", "R", "U"];
+
+    const state = {
+      trendScheme: "1",
+      trendBucket: "ALL",
+      selectedLetters: new Set(["V", "T", "F", "S", "X", "N", "R"]),
+      monthScheme: "1",
+      monthBucket: "ALL",
+      monthLetter: "V",
+      claimFilter: "all",
+      claimSearch: "",
+      transitionThreshold: 60000,
+      transitionMaxEdges: 20,
+      data: null,
+    };
+
+    const el = {
+      topMetrics: document.getElementById("top-metrics"),
+      datasetMeta: document.getElementById("dataset-meta"),
+      trendScheme: document.getElementById("trend-scheme"),
+      trendBucket: document.getElementById("trend-bucket"),
+      categoryChips: document.getElementById("category-chips"),
+      monthScheme: document.getElementById("month-scheme"),
+      monthBucket: document.getElementById("month-bucket"),
+      monthLetter: document.getElementById("month-letter"),
+      claimFilter: document.getElementById("claim-filter"),
+      claimSearch: document.getElementById("claim-search"),
+      claimTableBody: document.getElementById("claim-table-body"),
+      transitionThreshold: document.getElementById("transition-threshold"),
+      transitionMaxEdges: document.getElementById("transition-max-edges"),
+      thresholdLabel: document.getElementById("threshold-label"),
+      edgeLabel: document.getElementById("edge-label"),
+      transitionTableBody: document.getElementById("transition-table-body"),
+    };
+
+    function fmtInt(value) {
+      return Number(value).toLocaleString("en-US", { maximumFractionDigits: 0 });
+    }
+
+    function fmtFloat(value, decimals = 3) {
+      return Number(value).toLocaleString("en-US", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      });
+    }
+
+    function letterName(letter) {
+      const mapping = state.data.labels.letter_name;
+      return mapping[letter] ? `${mapping[letter]} (${letter})` : letter;
+    }
+
+    function schemeName(scheme) {
+      const mapping = state.data.labels.scheme_name;
+      return mapping[scheme] || scheme;
+    }
+
+    function uniqueSorted(values) {
+      return Array.from(new Set(values)).sort((a, b) => a.localeCompare(b));
+    }
+
+    function byLetterOrder(a, b) {
+      return LETTER_ORDER.indexOf(a) - LETTER_ORDER.indexOf(b);
+    }
+
+    function renderTopMetrics() {
+      const summary = state.data.claim_metrics.summary;
+      const checks = state.data.claim_metrics.checks;
+      const passCount = checks.filter((item) => item.pass).length;
+
+      const cards = [
+        ["Deaths analyzed", fmtInt(summary.total_deaths)],
+        ["Claim checks", `${passCount}/${checks.length}`],
+        ["Category concordance", `${fmtFloat(summary.concordance_category_pct, 2)}%`],
+        ["ICD concordance", `${fmtFloat(summary.concordance_icd_pct, 2)}%`],
+        ["COVID promotions", fmtInt(summary.covid_promotions)],
+        ["COVID demotions", fmtInt(summary.covid_demotions)],
+      ];
+
+      el.topMetrics.innerHTML = cards
+        .map(
+          ([key, value]) =>
+            `<article class="metric"><div class="metric-k">${key}</div><div class="metric-v">${value}</div></article>`
+        )
+        .join("");
+
+      const generated = new Date(state.data.meta.generated_utc);
+      el.datasetMeta.textContent = `Dataset generated: ${generated.toLocaleString()} UTC source. Validation fallback: ${summary.external_prefix_fallback || "none"}.`;
+    }
+
+    function fillSelect(selectEl, options, formatter) {
+      selectEl.innerHTML = options
+        .map((value) => `<option value="${value}">${formatter ? formatter(value) : value}</option>`)
+        .join("");
+    }
+
+    function buildControls() {
+      const yearly = state.data.series.yearly;
+      const monthly = state.data.series.monthly;
+      const schemes = uniqueSorted(yearly.map((item) => item.scheme));
+      const trendBuckets = uniqueSorted(yearly.map((item) => item.bucket));
+      const monthBuckets = uniqueSorted(monthly.map((item) => item.bucket));
+      const letters = LETTER_ORDER.filter((letter) => state.data.labels.letter_name[letter]);
+
+      fillSelect(el.trendScheme, schemes, schemeName);
+      fillSelect(el.trendBucket, trendBuckets, (value) => value);
+      fillSelect(el.monthScheme, schemes, schemeName);
+      fillSelect(el.monthBucket, monthBuckets, (value) => value);
+      fillSelect(el.monthLetter, letters, letterName);
+
+      el.trendScheme.value = state.trendScheme;
+      el.trendBucket.value = state.trendBucket;
+      el.monthScheme.value = state.monthScheme;
+      el.monthBucket.value = state.monthBucket;
+      el.monthLetter.value = state.monthLetter;
+
+      el.categoryChips.innerHTML = letters
+        .map((letter) => {
+          const checked = state.selectedLetters.has(letter) ? "checked" : "";
+          return `<label class="chip"><input type="checkbox" data-letter="${letter}" ${checked}>${letterName(letter)}</label>`;
+        })
+        .join("");
+
+      el.categoryChips.querySelectorAll("input[type=checkbox]").forEach((checkbox) => {
+        checkbox.addEventListener("change", (event) => {
+          const { letter } = event.target.dataset;
+          if (event.target.checked) {
+            state.selectedLetters.add(letter);
+          } else {
+            state.selectedLetters.delete(letter);
+          }
+          renderTrendPlot();
+        });
+      });
+
+      el.trendScheme.addEventListener("change", (event) => {
+        state.trendScheme = event.target.value;
+        renderTrendPlot();
+      });
+
+      el.trendBucket.addEventListener("change", (event) => {
+        state.trendBucket = event.target.value;
+        renderTrendPlot();
+      });
+
+      el.monthScheme.addEventListener("change", (event) => {
+        state.monthScheme = event.target.value;
+        renderMonthlyHeatmap();
+      });
+
+      el.monthBucket.addEventListener("change", (event) => {
+        state.monthBucket = event.target.value;
+        renderMonthlyHeatmap();
+      });
+
+      el.monthLetter.addEventListener("change", (event) => {
+        state.monthLetter = event.target.value;
+        renderMonthlyHeatmap();
+      });
+
+      el.claimFilter.addEventListener("change", (event) => {
+        state.claimFilter = event.target.value;
+        renderClaimTable();
+      });
+
+      el.claimSearch.addEventListener("input", (event) => {
+        state.claimSearch = event.target.value.trim().toLowerCase();
+        renderClaimTable();
+      });
+
+      el.transitionThreshold.addEventListener("input", (event) => {
+        state.transitionThreshold = Number(event.target.value);
+        renderTransitionSankey();
+        renderTransitionTable();
+      });
+
+      el.transitionMaxEdges.addEventListener("input", (event) => {
+        state.transitionMaxEdges = Number(event.target.value);
+        renderTransitionSankey();
+      });
+    }
+
+    function renderTrendPlot() {
+      const rows = state.data.series.yearly.filter(
+        (item) => item.scheme === state.trendScheme && item.bucket === state.trendBucket && state.selectedLetters.has(item.letter)
+      );
+
+      const grouped = {};
+      rows.forEach((item) => {
+        if (!grouped[item.letter]) {
+          grouped[item.letter] = [];
+        }
+        grouped[item.letter].push(item);
+      });
+
+      const traces = Object.keys(grouped)
+        .sort(byLetterOrder)
+        .map((letter) => {
+          const points = grouped[letter].sort((a, b) => a.year - b.year);
+          return {
+            type: "scatter",
+            mode: "lines+markers",
+            name: letterName(letter),
+            x: points.map((item) => item.year),
+            y: points.map((item) => item.weight),
+            hovertemplate: "%{x}<br>%{y:,.0f} deaths<extra>" + letterName(letter) + "</extra>",
+          };
+        });
+
+      const layout = {
+        margin: { t: 30, r: 10, b: 45, l: 65 },
+        paper_bgcolor: "#ffffff",
+        plot_bgcolor: "#ffffff",
+        legend: { orientation: "h", y: -0.25 },
+        xaxis: { title: "Year", gridcolor: "#ebf1f7" },
+        yaxis: { title: "Weighted death count", gridcolor: "#ebf1f7" },
+        title: `${schemeName(state.trendScheme)} | ${state.trendBucket}`,
+      };
+
+      Plotly.newPlot("trend-plot", traces, layout, { responsive: true, displaylogo: false });
+    }
+
+    function renderMonthlyHeatmap() {
+      const rows = state.data.series.monthly.filter(
+        (item) =>
+          item.scheme === state.monthScheme &&
+          item.bucket === state.monthBucket &&
+          item.letter === state.monthLetter
+      );
+
+      const years = uniqueSorted(rows.map((item) => String(item.year))).map(Number);
+      const months = Array.from({ length: 12 }, (_, index) => index + 1);
+      const index = new Map(rows.map((item) => [`${item.year}-${item.month}`, item.weight]));
+
+      const z = years.map((year) => months.map((month) => index.get(`${year}-${month}`) || 0));
+
+      const trace = {
+        type: "heatmap",
+        x: months,
+        y: years,
+        z,
+        colorscale: "YlGnBu",
+        hovertemplate: "Year %{y}, Month %{x}<br>%{z:,.0f} deaths<extra></extra>",
+      };
+
+      const layout = {
+        margin: { t: 30, r: 10, b: 45, l: 55 },
+        paper_bgcolor: "#ffffff",
+        plot_bgcolor: "#ffffff",
+        xaxis: { title: "Month", dtick: 1 },
+        yaxis: { title: "Year" },
+        title: `${letterName(state.monthLetter)} | ${schemeName(state.monthScheme)} | ${state.monthBucket}`,
+      };
+
+      Plotly.newPlot("month-heatmap", [trace], layout, { responsive: true, displaylogo: false });
+    }
+
+    function renderChangeBar() {
+      const changes = state.data.claim_metrics.category_change_pct;
+      const letters = Object.keys(changes).sort(byLetterOrder);
+      const values = letters.map((letter) => changes[letter]);
+      const colors = values.map((value) => (value >= 0 ? "#0a9396" : "#bb3e03"));
+
+      const trace = {
+        type: "bar",
+        x: letters.map(letterName),
+        y: values,
+        marker: { color: colors },
+        hovertemplate: "%{x}<br>%{y:.2f}%<extra></extra>",
+      };
+
+      const layout = {
+        margin: { t: 28, r: 10, b: 95, l: 55 },
+        paper_bgcolor: "#ffffff",
+        plot_bgcolor: "#ffffff",
+        yaxis: { title: "% change (Record vs Entity)", gridcolor: "#ebf1f7" },
+        xaxis: { tickangle: -35 },
+      };
+
+      Plotly.newPlot("change-bar", [trace], layout, { responsive: true, displaylogo: false });
+    }
+
+    function renderCountBar() {
+      const record = state.data.claim_metrics.record_category_counts;
+      const entity = state.data.claim_metrics.entity_category_counts;
+      const letters = LETTER_ORDER.filter((letter) => record[letter] || entity[letter]);
+
+      const traceRecord = {
+        type: "bar",
+        name: "Record Axis",
+        x: letters.map(letterName),
+        y: letters.map((letter) => record[letter] || 0),
+        marker: { color: "#005f73" },
+      };
+
+      const traceEntity = {
+        type: "bar",
+        name: "Entity Axis",
+        x: letters.map(letterName),
+        y: letters.map((letter) => entity[letter] || 0),
+        marker: { color: "#bb3e03" },
+      };
+
+      const layout = {
+        barmode: "group",
+        margin: { t: 28, r: 10, b: 95, l: 55 },
+        paper_bgcolor: "#ffffff",
+        plot_bgcolor: "#ffffff",
+        yaxis: { title: "Underlying-cause counts", gridcolor: "#ebf1f7" },
+        xaxis: { tickangle: -35 },
+      };
+
+      Plotly.newPlot("count-bar", [traceRecord, traceEntity], layout, { responsive: true, displaylogo: false });
+    }
+
+    function filteredTransitions() {
+      return state.data.claim_metrics.transitions
+        .filter((item) => item.count >= state.transitionThreshold)
+        .sort((a, b) => b.count - a.count)
+        .slice(0, state.transitionMaxEdges);
+    }
+
+    function renderTransitionSankey() {
+      const rows = filteredTransitions();
+      const letters = uniqueSorted(rows.flatMap((item) => [item.from, item.to])).sort(byLetterOrder);
+      const idx = new Map(letters.map((letter, index) => [letter, index]));
+
+      const trace = {
+        type: "sankey",
+        arrangement: "snap",
+        node: {
+          pad: 12,
+          thickness: 15,
+          line: { color: "#8aa6be", width: 0.6 },
+          label: letters.map(letterName),
+          color: letters.map(() => "#dbeef5"),
+        },
+        link: {
+          source: rows.map((item) => idx.get(item.from)),
+          target: rows.map((item) => idx.get(item.to)),
+          value: rows.map((item) => item.count),
+          color: rows.map(() => "rgba(0,95,115,0.45)"),
+          hovertemplate: "%{source.label} -> %{target.label}<br>%{value:,.0f}<extra></extra>",
+        },
+      };
+
+      const layout = {
+        margin: { t: 20, r: 10, b: 15, l: 10 },
+        paper_bgcolor: "#ffffff",
+      };
+
+      Plotly.newPlot("transition-sankey", [trace], layout, { responsive: true, displaylogo: false });
+      el.thresholdLabel.textContent = `Min flow: ${fmtInt(state.transitionThreshold)}`;
+      el.edgeLabel.textContent = `Edges shown: ${rows.length} (max ${state.transitionMaxEdges})`;
+    }
+
+    function renderTransitionTable() {
+      const rows = filteredTransitions();
+      el.transitionTableBody.innerHTML = rows
+        .map(
+          (item) =>
+            `<tr><td>${letterName(item.from)}</td><td>${letterName(item.to)}</td><td>${fmtInt(item.count)}</td></tr>`
+        )
+        .join("");
+    }
+
+    function renderClaimTable() {
+      let rows = state.data.claim_metrics.checks;
+      if (state.claimFilter === "pass") {
+        rows = rows.filter((item) => item.pass);
+      } else if (state.claimFilter === "fail") {
+        rows = rows.filter((item) => !item.pass);
+      }
+      if (state.claimSearch) {
+        rows = rows.filter((item) => item.label.toLowerCase().includes(state.claimSearch));
+      }
+
+      el.claimTableBody.innerHTML = rows
+        .map((item) => {
+          const statusClass = item.pass ? "pass" : "fail";
+          const status = item.pass ? "PASS" : "FAIL";
+          const diff = item.difference === null ? "NA" : fmtFloat(item.difference, 3);
+          const expected = Number.isInteger(item.expected) ? fmtInt(item.expected) : fmtFloat(item.expected, 3);
+          const observed = Number.isInteger(item.observed) ? fmtInt(item.observed) : fmtFloat(item.observed, 3);
+          const tol = Number.isInteger(item.tolerance) ? fmtInt(item.tolerance) : fmtFloat(item.tolerance, 3);
+          return `<tr>
+            <td>${item.label}</td>
+            <td>${expected}</td>
+            <td>${observed}</td>
+            <td>${diff}</td>
+            <td>${tol}</td>
+            <td><span class="pill ${statusClass}">${status}</span></td>
+          </tr>`;
+        })
+        .join("");
+    }
+
+    async function loadData() {
+      const response = await fetch("assets/site_data.json", { cache: "no-cache" });
+      if (!response.ok) {
+        throw new Error(`Failed to load site_data.json: ${response.status}`);
+      }
+      return response.json();
+    }
+
+    async function init() {
+      el.datasetMeta.innerHTML = '<span class="loading"></span>Loading interactive dataset...';
+      try {
+        state.data = await loadData();
+        renderTopMetrics();
+        buildControls();
+        renderTrendPlot();
+        renderMonthlyHeatmap();
+        renderChangeBar();
+        renderCountBar();
+        renderTransitionSankey();
+        renderTransitionTable();
+        renderClaimTable();
+      } catch (error) {
+        el.datasetMeta.textContent = "Failed to load interactive dataset.";
+        console.error(error);
+      }
+    }
+
+    init();
+  </script>
 </body>
 </html>

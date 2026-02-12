@@ -27,6 +27,20 @@ bash scripts/reproducibility/reproduce_snapshot.sh
 Outputs are written to:
 - `results/reproduced/`
 
+## Interactive Website
+
+The repository includes a full interactive website in:
+- `docs/index.html`
+
+GitHub Pages URL (when `/docs` on `main` is enabled in repository settings):
+- `https://scientific-computing-user.github.io/Reclassification-and-Weighting-of-Multiple-Causes-of-Death-US-Death-Certificates-2003-2023/`
+
+To rebuild website datasets after rerunning validation:
+
+```bash
+python3 scripts/reproducibility/build_site_data.py
+```
+
 ## Claim Validation
 
 Full claim validation is supported in this package via split chunks in:
