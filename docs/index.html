@@ -161,6 +161,25 @@
       font-size: 0.88rem;
     }
 
+    .audit-note {
+      margin-top: 0.9rem;
+      border: 1px solid rgba(255, 225, 106, 0.28);
+      border-radius: 16px;
+      padding: 0.85rem 0.95rem;
+      background: linear-gradient(140deg, rgba(44, 34, 16, 0.82), rgba(18, 35, 49, 0.86));
+      box-shadow: inset 0 0 0 1px rgba(255, 243, 171, 0.04);
+    }
+
+    .audit-note strong {
+      color: #fff0a6;
+    }
+
+    .audit-note p {
+      margin: 0;
+      color: #e7f2fb;
+      font-size: 0.93rem;
+    }
+
     .quick-links {
       margin-top: 0.86rem;
       display: flex;
@@ -408,7 +427,11 @@
       <div class="quick-links">
         <a href="https://github.com/scientific-computing-user/Reclassification-and-Weighting-of-Multiple-Causes-of-Death-US-Death-Certificates-2003-2023" target="_blank" rel="noopener">Repository</a>
         <a href="https://github.com/scientific-computing-user/Reclassification-and-Weighting-of-Multiple-Causes-of-Death-US-Death-Certificates-2003-2023/blob/main/results/validation/claim_check.md" target="_blank" rel="noopener">Claim Report</a>
+        <a href="https://github.com/scientific-computing-user/Reclassification-and-Weighting-of-Multiple-Causes-of-Death-US-Death-Certificates-2003-2023/blob/main/results/validation/manuscript_provenance_reaudit_2026-03-21.md" target="_blank" rel="noopener">Provenance Re-audit</a>
         <a href="https://github.com/scientific-computing-user/Reclassification-and-Weighting-of-Multiple-Causes-of-Death-US-Death-Certificates-2003-2023/blob/main/paper/2026.01.31.26345264v1.full.pdf" target="_blank" rel="noopener">Paper PDF</a>
+      </div>
+      <div class="audit-note">
+        <p><strong>2026-03-21 provenance update:</strong> a follow-up audit found that an earlier AI-generated discrepancy memo mostly compared the manuscript against the wrong regenerated run variant (`Dup==Empty_last` instead of values aligned with `Dup==Empty_first`). The only confirmed manuscript-only mismatch from that review was the age-65+ Table 4 sentence for COVID reductions (`64%` / `57%` in text vs `63%` / `56%` in the table/workbook).</p>
       </div>
     </header>
 
@@ -535,7 +558,7 @@
           <div class="section-head">
             <div>
               <h2>Claim Validation Explorer</h2>
-              <p class="section-note">Search and filter claim checks from the audit report.</p>
+              <p class="section-note">Search and filter claim checks from the canonical computational validation report. This panel is not the same thing as the manuscript provenance re-audit linked above.</p>
             </div>
           </div>
           <div class="controls">

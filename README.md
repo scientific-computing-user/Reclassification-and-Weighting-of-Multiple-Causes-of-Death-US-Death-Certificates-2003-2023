@@ -82,6 +82,7 @@ Included reports from a completed full run:
 - `results/validation/claim_check_reaudit_2026-02-12.md` (`29/29` claims pass)
 - `results/validation/claim_metrics_reaudit_2026-02-12.json`
 - `results/validation/claim_proof_docx_reaudit_2026-02-12.md` (DOCX-to-claim cross-check matrix)
+- `results/validation/manuscript_provenance_reaudit_2026-03-21.md` (follow-up audit showing that a later discrepancy list mostly came from wrong run-variant alignment, not proven manuscript/output mismatches)
 
 To run validation directly after reconstruction:
 
@@ -97,6 +98,11 @@ python3 scripts/reproducibility/validate_claims.py \
 
 Validation note:
 - The validator maps unmapped ICD prefixes `S/T/V/W/X/Y` to `Other External (X)` during claim checks (`--external-prefix-fallback STVWXY`). This matches the manuscript transition accounting and resolves prior mismatch in the three `X->(T/F/S)` transition claims.
+
+Manuscript provenance note:
+- A separate re-audit of a later AI-generated discrepancy memo found that the large claimed mismatches for Table 1, Table 2, concordance, and Supplement S4 were mostly due to comparing manuscript values aligned with `Dup==Empty_first` against `Dup==Empty_last` outputs without proving that mapping.
+- The only confirmed manuscript-only mismatch from that provenance review was a Table 4 sentence for age `65+` COVID reductions (`64%` / `57%` in text vs `63%` / `56%` in the table/workbook).
+- See `results/validation/manuscript_provenance_reaudit_2026-03-21.md`.
 
 ## Large File Policy
 

@@ -1,5 +1,11 @@
 # Claim Validation Report
 
+Interpretation note:
+- This file is the repository's **canonical computational validation** output.
+- A later manuscript provenance re-audit found that a separate AI-generated discrepancy memo mostly reflected **wrong run-variant/file alignment** when comparing manuscript tables to regenerated outputs.
+- See `results/validation/manuscript_provenance_reaudit_2026-03-21.md`.
+- The only confirmed manuscript-only mismatch from that provenance review was the age-65+ Table 4 sentence reporting COVID reductions as `64%` / `57%` instead of the table/workbook values `63%` / `56%`.
+
 - Entity comparison column: `sel_code`
 - Total deaths scanned: `56,986,831`
 - Runtime (seconds): `492.2`
